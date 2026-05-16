@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List App</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+        }
+
+        .app{
+            width: 70vw;
+            min-height: 85vh;
+            background-color: white;
+            margin: 40px auto;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header{
+            height: 80px;
+            background-color: darkorchid;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #search{
+            display: flex;
+            gap: 15px;
+            padding: 25px;
+        }
+
+        input{
+            flex: 1;
+            height: 45px;
+            padding-left: 15px;
+            border: 1px solid gainsboro;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button{
+            width: 140px;
+            border: none;
+            background-color: darkorchid;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        button:hover{
+            opacity: 0.9;
+        }
+
+        #container{
+            padding: 0 25px 20px;
+        }
+
+        .task{
+            background-color: darkorchid;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .delete-btn{
+            width: 45px;
+            height: 40px;
+            background-color: white;
+            color: darkorchid;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+            padding-top: 8px;
+        }
+
+        footer{
+            text-align: center;
+            color: darkorchid;
+            padding: 20px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .app {
+                width: 95vw;
+                margin: 20px auto;
+            }
+
+            header {
+                font-size: 22px;
+                padding: 16px 12px;
+            }
+
+            #search {
+                flex-direction: column;
+                gap: 12px;
+                padding: 18px 15px;
+            }
+
+            input {
+                width: 100%;
+                min-width: 0;
+            }
+
+            button {
+                width: 100%;
+                padding: 14px 0;
+            }
+
+            .task {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+                font-size: 16px;
+            }
+
+            .delete-btn {
+                width: 100%;
+                height: auto;
+                padding: 10px 0;
+                border-radius: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <header>
+            📋 TO-DO LIST APP
+        </header>
+
+        <section id="search">
+            <input id="search1" type="text" placeholder="Enter a Task..." />
+            <button id="search2">+ Add Task</button>
+        </section>
+
+        <section id="container">
+        </section>
+
+        <footer>
+            Small steps every day lead to big results!
+        </footer>
+
+    </div>
+
+    <script>
+
+        const enterTask =document.getElementById("search1");
+        const addBtn = document.getElementById("search2");
+        const taskContainer=document.getElementById("container");
+        addBtn.addEventListener("click",function(){
+            const textValue= enterTask.value;
+            if(textValue=== ""){
+                alert("Please Enter the Task")
+                return;
+            }
+            const taskDiv =document.createElement("div");
+            taskDiv.classList.add("task");
+            const taskContent=document.createElement("span");
+            taskContent.textContent=textValue;
+            const deleteBtn = document.createElement("delete-btn");
+            deleteBtn.textContent="❌";
+            deleteBtn.classList.add("delete-btn");
+            deleteBtn.addEventListener("click",function(){
+                taskDiv.remove();
+            });
+            taskDiv.appendChild(taskContent);
+            taskDiv.appendChild(deleteBtn);
+            taskContainer.appendChild(taskDiv);
+
+
+
+        });
+
+    </script>
+
+</body>
+</html>
